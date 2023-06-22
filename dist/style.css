@@ -1,0 +1,37 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  margin-top: 150px;
+  border: 1px solid red;
+  width: 300px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  justify-content: center;
+}
+.cube0,
+.cube1,
+.cube2,
+.cube3,
+.cube4,
+.cube5,
+.cube6,
+.cube7,
+.cube8,
+.cube9 {
+  border: 1px solid black;
+  height: 100px;
+  width: 100px;
+  font-size: 100px;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  visibility: hidden;
+}
