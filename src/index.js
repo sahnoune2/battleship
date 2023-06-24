@@ -1,5 +1,3 @@
-const { doc } = require("prettier");
-
 const board = document.querySelector(".board");
 const button = document.createElement("button");
 button.classList.add("button");
