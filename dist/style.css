@@ -33,5 +33,9 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 100px;
-  visibility: hidden;
+  visibility: visible;
+}
+.button {
+  height: 40px;
+  margin-top: 270px;
 }
