@@ -28,7 +28,14 @@ body {
   font-size: 100px;
 }
 
-.text {
+.textX {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  visibility: visible;
+}
+.textY {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,3 +1,5 @@
+const { doc } = require("prettier");
+
 const board = document.querySelector(".board");
 const button = document.createElement("button");
 button.classList.add("button");
@@ -9,32 +11,54 @@ for (let i = 0; i < 9; i++) {
   board.appendChild(cube);
 }
 
-// const cube5 = document.querySelector(".cube5");
-// const text = document.createElement("div");
-// text.classList.add("text");
-// // text.textContent = "x";
-// cube5.appendChild(text);
-let maybe = false;
-board.addEventListener("click", (event) => {
-  if (maybe === false) {
-    const text = document.createElement("div");
-    event.target.appendChild(text);
-    text.textContent = "x";
-    text.classList.add("text");
-    maybe = true;
-    button.addEventListener("click", () => {
-      text.style.visibility = "hidden";
-      board.addEventListener("click", (event) => {
-        if (
-          event.target.textContent !== "x" &&
-          event.target.textContent !== null
-        ) {
-          event.target.textContent = "O";
-        } else if (event.target.textContent === "x") {
-          const text = document.querySelector(".text");
-          text.style.visibility = "visible";
-        }
-      });
-    });
+let hasX = false;
+let hasY = false;
+
+function placeX(event) {
+  if (!hasX) {
+    const textX = document.createElement("div");
+    event.target.appendChild(textX);
+    textX.textContent = "X";
+    textX.classList.add("textX");
+    hasX = true;
+    board.removeEventListener("click", placeX);
+    board.addEventListener("click", placeY);
   }
-});
+}
+
+function placeY(event) {
+  if (!hasY && event.target.textContent !== "X") {
+    const textY = document.createElement("div");
+    event.target.appendChild(textY);
+    textY.textContent = "Y";
+    textY.classList.add("textY");
+    hasY = true;
+    board.removeEventListener("click", placeY);
+  }
+  button.addEventListener("click", HideMarks);
+}
+
+function HideMarks() {
+  const textX = document.querySelector(".textX");
+  const textY = document.querySelector(".textY");
+  textX.style.visibility = "hidden";
+  textY.style.visibility = "hidden";
+  button.disabled = true;
+  board.addEventListener("click", function (event) {
+    placeO(event, textX, textY);
+  });
+}
+function placeO(event, textX, textY) {
+  if (
+    event.target.textContent !== "X" &&
+    event.target.textContent !== null &&
+    event.target.textContent !== "Y"
+  ) {
+    event.target.textContent = "O";
+  } else if (event.target.textContent === "X") {
+    textX.style.visibility = "visible";
+  } else if (event.target.textContent === "Y") {
+    textY.style.visibility = "visible";
+  }
+}
+board.addEventListener("click", placeX);
