@@ -61,6 +61,7 @@ function HideMarks() {
     clicked1 = false;
   });
 }
+
 function placeO1(event, textX, clicked1) {
   if (clicked1 === false) {
     if (event.target.textContent !== "X" && event.target.textContent !== null) {
