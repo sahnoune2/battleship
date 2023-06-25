@@ -1,11 +1,20 @@
-body {
+.all {
   display: flex;
+  border: 1px solid green;
+  justify-content: space-around;
+}
+.board1 {
+  display: grid;
+
+  border: 1px solid red;
+  width: 300px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
   justify-content: center;
 }
-
-.board {
+.board2 {
   display: grid;
-  margin-top: 150px;
+
   border: 1px solid red;
   width: 300px;
   grid-template-columns: repeat(3, 100px);
@@ -44,5 +53,7 @@ body {
 }
 .button {
   height: 40px;
-  margin-top: 270px;
+}
+.player {
+  font-size: 100px;
 }
