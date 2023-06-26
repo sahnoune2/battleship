@@ -27,7 +27,7 @@ board1.addEventListener("mouseout", (event) => {
   event.target.style.backgroundColor = "";
 });
 board2.addEventListener("mouseover", (event) => {
-  event.target.style.backgroundColor = "yellow";
+  event.target.style.backgroundColor = "red";
 });
 board2.addEventListener("mouseout", (event) => {
   event.target.style.backgroundColor = "";
@@ -90,8 +90,13 @@ function placeO1(event, textX, clicked1) {
       event.target.textContent = "O";
     } else if (event.target.textContent === "X") {
       textX.style.visibility = "visible";
-      alert("player1 wins");
-      location.reload();
+
+      setTimeout(() => {
+        alert("player1 wins");
+      }, 500);
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   }
 }
@@ -101,8 +106,12 @@ function placeO2(event, textY, clicked2) {
       event.target.textContent = "O";
     } else if (event.target.textContent === "Y") {
       textY.style.visibility = "visible";
-      alert("player2 wins");
-      location.reload();
+      setTimeout(() => {
+        alert("player2 wins");
+      }, 500);
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   }
 }

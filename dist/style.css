@@ -7,7 +7,7 @@
   display: grid;
 
   border: 1px solid red;
-  width: 300px;
+
   grid-template-columns: repeat(10, 30px);
   grid-template-rows: repeat(10, 30px);
   justify-content: center;
@@ -16,7 +16,7 @@
   display: grid;
 
   border: 1px solid red;
-  width: 300px;
+
   grid-template-columns: repeat(10, 30px);
   grid-template-rows: repeat(10, 30px);
   justify-content: center;
