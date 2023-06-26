@@ -1,15 +1,37 @@
 const button = document.querySelector(".button");
-
 const player = document.querySelector(".player");
-
 const board1 = document.querySelector(".board1");
-
 const board2 = document.querySelector(".board2");
+const all = document.querySelector(".all");
 
 let hasX = false;
 let hasY = false;
 let clicked1 = false;
-let clicked2 = false;
+let clicked2 = true;
+
+for (let i = 0; i < 100; i++) {
+  const cube = document.createElement("div");
+  cube.classList.add("cube1");
+  board1.appendChild(cube);
+}
+for (let i = 0; i < 100; i++) {
+  const cube = document.createElement("div");
+  cube.classList.add("cube2");
+  board2.appendChild(cube);
+}
+
+board1.addEventListener("mouseover", (event) => {
+  event.target.style.backgroundColor = "yellow";
+});
+board1.addEventListener("mouseout", (event) => {
+  event.target.style.backgroundColor = "";
+});
+board2.addEventListener("mouseover", (event) => {
+  event.target.style.backgroundColor = "yellow";
+});
+board2.addEventListener("mouseout", (event) => {
+  event.target.style.backgroundColor = "";
+});
 
 function placeX(event) {
   if (!hasX) {
@@ -34,8 +56,8 @@ function placeY(event) {
     hasY = true;
     player.textContent = "begin";
     board2.removeEventListener("click", placeY);
+    button.addEventListener("click", HideMarks);
   }
-  button.addEventListener("click", HideMarks);
 }
 
 function HideMarks() {

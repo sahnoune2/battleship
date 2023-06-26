@@ -1,12 +1,14 @@
-function placeO1(event, textX, clicked1) {
-  if (clicked1 === false) {
-    if (event.target.textContent !== "X" && event.target.textContent !== null) {
-      event.target.textContent = "O";
-    } else if (event.target.textContent === "X") {
-      textX.style.visibility = "visible";
-      alert("player1 wins");
-      location.reload();
-    }
+function placeX(target, hasX) {
+  if (!hasX) {
+    const textX = document.createElement("div");
+    target.target.appendChild(textX);
+    textX.textContent = "X";
+    textX.classList.add("textX");
+    hasX = true;
+    player.textContent = "player2";
+
+    board1.removeEventListener("click", placeX);
+    board2.addEventListener("click", placeY);
   }
 }
-export { placeO1 };
+export { placeX };
