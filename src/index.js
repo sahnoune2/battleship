@@ -41,6 +41,7 @@ board2.addEventListener("mouseout", (event) => {
 });
 
 let countX = 0;
+let countY = 0;
 function placeX(event) {
   if (countX === 0) {
     const textX = document.createElement("div");
@@ -111,24 +112,82 @@ function placeY(event) {
   if (!hasY && event.target.textContent !== "X") {
     const textY = document.createElement("div");
     event.target.appendChild(textY);
-    console.log(arrayB.indexOf(event.target));
     textY.textContent = "Y";
+    console.log(event.target);
     textY.classList.add("textY");
     hasY = true;
-    player.textContent = "begin";
-    board2.removeEventListener("click", placeY);
-    button.addEventListener("click", HideMarks);
+
+    countY = 1;
+    console.log(countY);
+  } else if (countY === 1 && !event.target.hasChildNodes()) {
+    const textY1 = document.createElement("div");
+    const textY2 = document.createElement("div");
+    let indexA = arrayB.indexOf(event.target);
+
+    if (arrayRight.includes(indexA) && !arrayB[indexA - 1].hasChildNodes()) {
+      arrayB[indexA].appendChild(textY1);
+      arrayB[indexA - 1].appendChild(textY2);
+      hasY = true;
+      countY = 2;
+    } else if (
+      arrayB[indexA + 1].hasChildNodes() &&
+      !arrayLeft.includes(indexA)
+    ) {
+      arrayB[indexA].appendChild(textY1);
+      arrayB[indexA - 1].appendChild(textY2);
+      hasY = true;
+      countY = 2;
+    } else if (
+      arrayRight.includes(indexA) &&
+      arrayB[indexA - 1].hasChildNodes()
+    ) {
+    } else if (
+      arrayLeft.includes(indexA) &&
+      !arrayB[indexA + 1].hasChildNodes()
+    ) {
+      arrayB[indexA].appendChild(textY1);
+      arrayB[indexA + 1].appendChild(textY2);
+      hasY = true;
+      countY = 2;
+    } else if (
+      arrayLeft.includes(indexA) &&
+      arrayB[indexA + 1].hasChildNodes()
+    ) {
+    } else {
+      arrayB[indexA].appendChild(textY1);
+      arrayB[indexA + 1].appendChild(textY2);
+      hasY = true;
+      countY = 2;
+    }
+
+    if (countY === 2) {
+      textY1.textContent = "Y";
+      textY2.textContent = "Y";
+      textY1.classList.add("textY1");
+      textY2.classList.add("textY2");
+
+      player.textContent = "begin";
+
+      board2.removeEventListener("click", placeY);
+      button.addEventListener("click", HideMarks);
+    }
   }
 }
 
 function HideMarks() {
   player.textContent = "player1";
+  const textX = document.querySelector(".textX");
   const textX1 = document.querySelector(".textX1");
   const textX2 = document.querySelector(".textX2");
   const textY = document.querySelector(".textY");
+  const textY1 = document.querySelector(".textY1");
+  const textY2 = document.querySelector(".textY2");
+  textX.style.visibility = "hidden";
   textX1.style.visibility = "hidden";
   textX2.style.visibility = "hidden";
   textY.style.visibility = "hidden";
+  textY1.style.visibility = "hidden";
+  textY2.style.visibility = "hidden";
 
   button.disabled = true;
 
@@ -167,12 +226,12 @@ function placeO1(event, textX1, textX2, clicked1) {
   }
 }
 function placeO2(event, textY, clicked2) {
-  let index = arrayA.indexOf(event.target);
+  let index = arrayB.indexOf(event.target);
   if (clicked2 === false) {
     if (event.target.textContent !== "Y" && event.target.textContent !== null) {
       event.target.textContent = "O";
     } else if (event.target.textContent === "Y") {
-      const child = arrayA[index].firstElementChild;
+      const child = arrayB[index].firstElementChild;
       console.log(child.className);
       child.style.visibility = "visible";
       // setTimeout(() => {

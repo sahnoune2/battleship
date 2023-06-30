@@ -33,13 +33,16 @@
 }
 
 .textX1,
-.textX2 {
+.textX2,
+.textX {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
   visibility: visible;
 }
+.textY1,
+.textY2,
 .textY {
   display: flex;
   justify-content: center;
