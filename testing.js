@@ -1,19 +1,16 @@
-// function placeX(event) {
-//   if (!hasX) {
-//     const textX = document.createElement("div");
-//     event.target.appendChild(textX);
-//     textX.textContent = "X";
-//     textX.classList.add("textX");
-//     hasX = true;
-//     player.textContent = "player2";
-
-//     board1.removeEventListener("click", placeX);
-//     board2.addEventListener("click", placeY);
-//   }
-// }
-// let countX = 0;
-function placeX(event) {
-  if (countX === 0) {
+function placeX(
+  event,
+  objectX,
+  hasX,
+  arrayA,
+  arrayRight,
+  arrayLeft,
+  player,
+  oX,
+  oY
+) {
+  //first :X//
+  if (objectX.countX === 0) {
     const textX = document.createElement("div");
     event.target.appendChild(textX);
     textX.textContent = "X";
@@ -21,9 +18,9 @@ function placeX(event) {
     textX.classList.add("textX");
     hasX = true;
 
-    countX = 1;
-    console.log(countX);
-  } else if (countX === 1 && !event.target.hasChildNodes()) {
+    objectX.countX = 1;
+    //second :XX//
+  } else if (objectX.countX === 1 && !event.target.hasChildNodes()) {
     const textX1 = document.createElement("div");
     const textX2 = document.createElement("div");
     let indexA = arrayA.indexOf(event.target);
@@ -32,7 +29,7 @@ function placeX(event) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA - 1].appendChild(textX2);
       hasX = true;
-      countX = 2;
+      objectX.countX = 2;
     } else if (
       arrayA[indexA + 1].hasChildNodes() &&
       !arrayLeft.includes(indexA)
@@ -40,7 +37,7 @@ function placeX(event) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA - 1].appendChild(textX2);
       hasX = true;
-      countX = 2;
+      objectX.countX = 2;
     } else if (
       arrayRight.includes(indexA) &&
       arrayA[indexA - 1].hasChildNodes()
@@ -52,7 +49,7 @@ function placeX(event) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA + 1].appendChild(textX2);
       hasX = true;
-      countX = 2;
+      objectX.countX = 2;
     } else if (
       arrayLeft.includes(indexA) &&
       arrayA[indexA + 1].hasChildNodes()
@@ -61,19 +58,89 @@ function placeX(event) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA + 1].appendChild(textX2);
       hasX = true;
-      countX = 2;
+      objectX.countX = 2;
     }
-
-    if (countX === 2) {
+    if (objectX.countX === 2) {
       textX1.textContent = "X";
       textX2.textContent = "X";
+
       textX1.classList.add("textX1");
       textX2.classList.add("textX2");
+    }
+  } else if (objectX.countX === 2 && !event.target.hasChildNodes()) {
+    const textX3 = document.createElement("div");
+    const textX4 = document.createElement("div");
+    const textX5 = document.createElement("div");
+    let indexA = arrayA.indexOf(event.target);
+    //true
+    if (
+      arrayRight.includes(indexA) &&
+      !arrayA[indexA - 1].hasChildNodes() &&
+      !arrayA[indexA - 2].hasChildNodes()
+    ) {
+      arrayA[indexA].appendChild(textX3);
+      arrayA[indexA - 1].appendChild(textX4);
+      arrayA[indexA - 2].appendChild(textX5);
+      hasX = true;
+      objectX.countX = 3;
+    } else if (
+      arrayA[indexA + 1].hasChildNodes() &&
+      !arrayLeft.includes(indexA) &&
+      !arrayLeft.includes(indexA - 1) &&
+      !arrayA[indexA - 1].hasChildNodes() &&
+      !arrayA[indexA - 2].hasChildNodes()
+    ) {
+      arrayA[indexA].appendChild(textX3);
+      arrayA[indexA - 1].appendChild(textX4);
+      arrayA[indexA - 2].appendChild(textX5);
+      hasX = true;
+      objectX.countX = 3;
+    } else if (
+      arrayRight.includes(indexA) &&
+      arrayA[indexA - 1].hasChildNodes()
+    ) {
+    } else if (
+      arrayLeft.includes(indexA) &&
+      !arrayA[indexA + 1].hasChildNodes() &&
+      !arrayA[indexA + 2].hasChildNodes()
+    ) {
+      arrayA[indexA].appendChild(textX3);
+      arrayA[indexA + 1].appendChild(textX4);
+      arrayA[indexA + 2].appendChild(textX5);
+      hasX = true;
+      objectX.countX = 3;
+    } else if (
+      arrayLeft.includes(indexA) &&
+      arrayA[indexA + 1].hasChildNodes()
+    ) {
+    } else if (
+      (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes()) ||
+      (arrayA[indexA + 1].hasChildNodes() && !arrayLeft.includes(indexA)) ||
+      (arrayRight.includes(indexA) && arrayA[indexA - 1].hasChildNodes()) ||
+      (arrayLeft.includes(indexA) && !arrayA[indexA + 1].hasChildNodes()) ||
+      (arrayLeft.includes(indexA) && arrayA[indexA + 1].hasChildNodes())
+    ) {
+    } else {
+      arrayA[indexA].appendChild(textX3);
+      arrayA[indexA + 1].appendChild(textX4);
+      arrayA[indexA + 2].appendChild(textX5);
+      hasX = true;
+      objectX.countX = 3;
+    }
 
-      player.textContent = "player2";
+    if (objectX.countX === 3) {
+      textX3.textContent = "X";
+      textX4.textContent = "X";
+      textX5.textContent = "X";
+      textX3.classList.add("textX3");
+      textX4.classList.add("textX4");
+      textX5.classList.add("textX5");
 
-      board1.removeEventListener("click", placeX);
-      board2.addEventListener("click", placeY);
+      player.textContent = "player2's turn";
+      oX.cX = 1;
+      oY.cY = 0;
     }
   }
 }
+
+export { placeX };

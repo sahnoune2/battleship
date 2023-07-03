@@ -40,7 +40,10 @@ body {
 
 .textX1,
 .textX2,
-.textX {
+.textX,
+.textX3,
+.textX4,
+.textX5 {
   display: flex;
   justify-content: center;
   align-items: center;
