@@ -8,46 +8,67 @@ const board2 = document.querySelector(".board2");
 
 let hasX = false;
 let hasY = false;
-let clicked1 = false;
-let clicked2 = true;
+let cX = { clicked1: false };
+let cY = { clicked2: true };
 let arrayRight = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
 let arrayLeft = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
 let arrayA = [];
 let arrayB = [];
-
-for (let i = 0; i < 100; i++) {
-  const cube = document.createElement("div");
-  cube.classList.add(`cubeA`, `cube${i}`);
-  arrayA[i] = cube;
-  board1.appendChild(cube);
-}
-console.log(arrayA);
-for (let i = 0; i < 100; i++) {
-  const cube = document.createElement("div");
-  cube.classList.add(`cubeB`, `cube${i}`);
-  arrayB[i] = cube;
-  board2.appendChild(cube);
-}
-
-board1.addEventListener("mouseover", (event) => {
-  event.target.style.backgroundColor = "yellow";
-});
-board1.addEventListener("mouseout", (event) => {
-  event.target.style.backgroundColor = "";
-});
-board2.addEventListener("mouseover", (event) => {
-  event.target.style.backgroundColor = "red";
-});
-board2.addEventListener("mouseout", (event) => {
-  event.target.style.backgroundColor = "";
-});
-
 let oX = { cX: 0 };
 let oY = { cY: 1 };
 let oB = { cB: 0 };
 let objectX = { countX: 0 };
 let objectY = { countY: 0 };
 let hide = false;
+
+const fragmentA = document.createDocumentFragment();
+const fragmentB = document.createDocumentFragment();
+
+for (let i = 0; i < 100; i++) {
+  const cube = document.createElement("div");
+  cube.classList.add(`cubeA`, `cube${i}`);
+  arrayA[i] = cube;
+  fragmentA.appendChild(cube);
+}
+board1.appendChild(fragmentA);
+
+console.log(fragmentA);
+for (let i = 0; i < 100; i++) {
+  const cube = document.createElement("div");
+  cube.classList.add(`cubeB`, `cube${i}`);
+  arrayB[i] = cube;
+  fragmentB.appendChild(cube);
+}
+board2.appendChild(fragmentB);
+
+for (let i = 0; i < arrayA.length; i++) {
+  const first = arrayA[i];
+  first.addEventListener("mouseover", (event) => {
+    event.target.style.backgroundColor = "yellow";
+  });
+}
+
+for (let i = 0; i < arrayA.length; i++) {
+  const first = arrayA[i];
+  first.addEventListener("mouseout", (event) => {
+    event.target.style.backgroundColor = "";
+  });
+}
+
+for (let i = 0; i < arrayB.length; i++) {
+  const second = arrayB[i];
+  second.addEventListener("mouseover", (event) => {
+    event.target.style.backgroundColor = "blue";
+  });
+}
+
+for (let i = 0; i < arrayB.length; i++) {
+  const second = arrayB[i];
+  second.addEventListener("mouseout", (event) => {
+    event.target.style.backgroundColor = "";
+  });
+}
+
 // function placeX(event) {
 //   if (countX === 0) {
 //     const textX = document.createElement("div");
@@ -180,7 +201,7 @@ let hide = false;
 // }
 
 function HideMarks() {
-  player.textContent = "player1";
+  player.textContent = "player1's turn";
   const textX = document.querySelector(".textX");
   const textX1 = document.querySelector(".textX1");
   const textX2 = document.querySelector(".textX2");
@@ -199,34 +220,40 @@ function HideMarks() {
   for (let i = 0; i < arrayA.length; i++) {
     const first = arrayA[i];
     first.addEventListener("click", function (event) {
-      player.textContent = "player2";
-      placeO1(event, clicked1);
-      clicked1 = true;
-      clicked2 = false;
+      placeO1(event, cX);
     });
   }
 
   for (let i = 0; i < arrayB.length; i++) {
     const second = arrayB[i];
     second.addEventListener("click", function (event) {
-      player.textContent = "player1";
-      placeO2(event, clicked2);
-
-      clicked2 = true;
-      clicked1 = false;
+      placeO2(event, cY);
     });
   }
 }
 
-function placeO1(event, clicked1) {
+function placeO1(event, cX) {
   let index = arrayA.indexOf(event.target);
-  if (clicked1 === false) {
-    if (event.target.textContent !== "X" && event.target.textContent !== null) {
+  if (cX.clicked1 === false) {
+    if (
+      event.target.textContent !== "X" &&
+      event.target.textContent !== null &&
+      event.target.textContent !== "O"
+    ) {
       event.target.textContent = "O";
-    } else if (event.target.textContent === "X") {
+      player.textContent = "player2's turn";
+      cX.clicked1 = true;
+      cY.clicked2 = false;
+    } else if (
+      event.target.textContent === "X" &&
+      event.target.textContent !== "O"
+    ) {
       const child = arrayA[index].firstElementChild;
       console.log(child.className);
       child.style.visibility = "visible";
+      player.textContent = "player2's turn";
+      cX.clicked1 = true;
+      cY.clicked2 = false;
 
       // setTimeout(() => {
       //   alert("player1 wins");
@@ -237,15 +264,28 @@ function placeO1(event, clicked1) {
     }
   }
 }
-function placeO2(event, clicked2) {
+function placeO2(event, cY) {
   let index = arrayB.indexOf(event.target);
-  if (clicked2 === false) {
-    if (event.target.textContent !== "Y" && event.target.textContent !== null) {
+  if (cY.clicked2 === false) {
+    if (
+      event.target.textContent !== "Y" &&
+      event.target.textContent !== null &&
+      event.target.textContent !== "O"
+    ) {
       event.target.textContent = "O";
-    } else if (event.target.textContent === "Y") {
+      player.textContent = "player1's turn";
+      cY.clicked2 = true;
+      cX.clicked1 = false;
+    } else if (
+      event.target.textContent === "Y" &&
+      event.target.textContent !== "O"
+    ) {
       const child = arrayB[index].firstElementChild;
       console.log(child.className);
       child.style.visibility = "visible";
+      player.textContent = "player1's turn";
+      cY.clicked2 = true;
+      cX.clicked1 = false;
       // setTimeout(() => {
       //   alert("player2 wins");
       // }, 500);

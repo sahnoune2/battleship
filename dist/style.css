@@ -1,25 +1,31 @@
+body {
+  margin-top: 120px;
+  background-color: rgba(248, 242, 242, 0.471);
+}
 .all {
   display: flex;
-  border: 1px solid green;
+
   justify-content: space-around;
 }
 .board1 {
   display: grid;
-  width: 400px;
-  border: 1px solid red;
 
+  border: 1px solid red;
+  background-color: white;
   grid-template-columns: repeat(10, 30px);
   grid-template-rows: repeat(10, 30px);
   justify-content: center;
+  grid-gap: 5px;
 }
 .board2 {
   display: grid;
 
   border: 1px solid red;
-
+  background-color: white;
   grid-template-columns: repeat(10, 30px);
   grid-template-rows: repeat(10, 30px);
   justify-content: center;
+  grid-gap: 5px;
 }
 
 .cubeA,
@@ -50,9 +56,29 @@
   font-size: 20px;
   visibility: visible;
 }
+
+.button-all {
+  display: flex;
+  justify-content: center;
+}
 .button {
   height: 40px;
+  margin: 20px;
+
+  border-radius: 5px;
 }
 .player {
   font-size: 40px;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+.title {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+.title1 {
+}
+.title2 {
 }

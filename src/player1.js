@@ -65,7 +65,7 @@ function placeX(
       textX1.classList.add("textX1");
       textX2.classList.add("textX2");
 
-      player.textContent = "player2";
+      player.textContent = "player2's turn";
       oX.cX = 1;
       oY.cY = 0;
     }
