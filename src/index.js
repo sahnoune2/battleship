@@ -6,6 +6,9 @@ const player = document.querySelector(".player");
 const board1 = document.querySelector(".board1");
 const board2 = document.querySelector(".board2");
 
+const title1 = document.querySelector(".title1");
+const title2 = document.querySelector(".title2");
+
 let hasX = false;
 let hasY = false;
 let cX = { clicked1: false };
@@ -228,6 +231,7 @@ function HideMarks() {
   textY5.style.visibility = "hidden";
 
   button.disabled = true;
+  title1.style.backgroundColor = "yellow";
 
   for (let i = 0; i < arrayA.length; i++) {
     const first = arrayA[i];
@@ -254,6 +258,8 @@ function placeO1(event, cX) {
     ) {
       event.target.textContent = "O";
       player.textContent = "player2's turn";
+      title2.style.backgroundColor = "blue";
+      title1.style.backgroundColor = "";
       cX.clicked1 = true;
       cY.clicked2 = false;
     } else if (
@@ -264,15 +270,19 @@ function placeO1(event, cX) {
       console.log(child.className);
       child.style.visibility = "visible";
       player.textContent = "player2's turn";
+      title2.style.backgroundColor = "blue";
+      title1.style.backgroundColor = "";
       cX.clicked1 = true;
       cY.clicked2 = false;
-
-      // setTimeout(() => {
-      //   alert("player1 wins");
-      // }, 500);
-      // setTimeout(() => {
-      //   location.reload();
-      // }, 1000);
+      objectX.countX += 1;
+    }
+    if (objectX.countX === 9) {
+      setTimeout(() => {
+        alert("player1 wins");
+      }, 500);
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   }
 }
@@ -286,6 +296,9 @@ function placeO2(event, cY) {
     ) {
       event.target.textContent = "O";
       player.textContent = "player1's turn";
+      title1.style.backgroundColor = "yellow";
+      title2.style.backgroundColor = "";
+
       cY.clicked2 = true;
       cX.clicked1 = false;
     } else if (
@@ -296,14 +309,19 @@ function placeO2(event, cY) {
       console.log(child.className);
       child.style.visibility = "visible";
       player.textContent = "player1's turn";
+      title1.style.backgroundColor = "yellow";
+      title2.style.backgroundColor = "";
       cY.clicked2 = true;
       cX.clicked1 = false;
-      // setTimeout(() => {
-      //   alert("player2 wins");
-      // }, 500);
-      // setTimeout(() => {
-      //   location.reload();
-      // }, 1000);
+      objectY.countY += 1;
+    }
+    if (objectY.countY === 9) {
+      setTimeout(() => {
+        alert("player2 wins");
+      }, 500);
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
   }
 }
