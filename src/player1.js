@@ -1,14 +1,4 @@
-function placeX(
-  event,
-  objectX,
-  hasX,
-  arrayA,
-  arrayRight,
-  arrayLeft,
-  player,
-  oX,
-  oY
-) {
+function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
   //first :X//
   if (objectX.countX === 0) {
     const textX = document.createElement("div");
@@ -16,48 +6,57 @@ function placeX(
     textX.textContent = "X";
     console.log(event.target);
     textX.classList.add("textX");
-    hasX = true;
 
     objectX.countX = 1;
-    //second :XX//
-  } else if (objectX.countX === 1 && !event.target.hasChildNodes()) {
+  }
+  //second :XX//
+  else if (objectX.countX === 1 && !event.target.hasChildNodes()) {
     const textX1 = document.createElement("div");
     const textX2 = document.createElement("div");
     let indexA = arrayA.indexOf(event.target);
-
+    //right//
     if (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes()) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA - 1].appendChild(textX2);
-      hasX = true;
+
       objectX.countX = 2;
-    } else if (
-      arrayA[indexA + 1].hasChildNodes() &&
-      !arrayLeft.includes(indexA)
-    ) {
-      arrayA[indexA].appendChild(textX1);
-      arrayA[indexA - 1].appendChild(textX2);
-      hasX = true;
-      objectX.countX = 2;
-    } else if (
+    }
+
+    //right//
+    else if (
       arrayRight.includes(indexA) &&
       arrayA[indexA - 1].hasChildNodes()
     ) {
-    } else if (
+    }
+
+    //left//
+    else if (
       arrayLeft.includes(indexA) &&
       !arrayA[indexA + 1].hasChildNodes()
     ) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA + 1].appendChild(textX2);
-      hasX = true;
+
       objectX.countX = 2;
-    } else if (
-      arrayLeft.includes(indexA) &&
-      arrayA[indexA + 1].hasChildNodes()
+    }
+    //left//
+    else if (arrayLeft.includes(indexA) && arrayA[indexA + 1].hasChildNodes()) {
+    }
+    //aa//
+    else if (
+      arrayA[indexA + 1].hasChildNodes() &&
+      !arrayLeft.includes(indexA)
     ) {
-    } else {
+      arrayA[indexA].appendChild(textX1);
+      arrayA[indexA - 1].appendChild(textX2);
+
+      objectX.countX = 2;
+    }
+    //aa//
+    else {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA + 1].appendChild(textX2);
-      hasX = true;
+
       objectX.countX = 2;
     }
     if (objectX.countX === 2) {
@@ -67,12 +66,14 @@ function placeX(
       textX1.classList.add("textX1");
       textX2.classList.add("textX2");
     }
-  } else if (objectX.countX === 2 && !event.target.hasChildNodes()) {
+  }
+  // third : XXX//
+  else if (objectX.countX === 2 && !event.target.hasChildNodes()) {
     const textX3 = document.createElement("div");
     const textX4 = document.createElement("div");
     const textX5 = document.createElement("div");
     let indexA = arrayA.indexOf(event.target);
-
+    //right//
     if (
       arrayRight.includes(indexA) &&
       !arrayA[indexA - 1].hasChildNodes() &&
@@ -81,63 +82,63 @@ function placeX(
       arrayA[indexA].appendChild(textX3);
       arrayA[indexA - 1].appendChild(textX4);
       arrayA[indexA - 2].appendChild(textX5);
-      hasX = true;
+
       objectX.countX = 3;
-    } else if (
-      (arrayA[indexA + 1].hasChildNodes() &&
-        !arrayLeft.includes(indexA) &&
-        !arrayLeft.includes(indexA - 1) &&
-        !arrayLeft.includes(indexA - 2) &&
-        !arrayA[indexA - 1].hasChildNodes() &&
-        !arrayA[indexA - 2].hasChildNodes()) ||
-      (arrayA[indexA + 1].hasChildNodes() &&
-        !arrayLeft.includes(indexA) &&
-        !arrayLeft.includes(indexA - 1) &&
-        arrayLeft.includes(indexA - 2) &&
-        !arrayA[indexA - 1].hasChildNodes() &&
-        !arrayA[indexA - 2].hasChildNodes())
+    }
+    //right//
+    else if (
+      (arrayRight.includes(indexA) && arrayA[indexA - 1].hasChildNodes()) ||
+      (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes()) ||
+      arrayRight.includes(indexA + 1)
+    ) {
+    }
+
+    //left//
+    else if (
+      arrayLeft.includes(indexA) &&
+      !arrayA[indexA + 1].hasChildNodes() &&
+      !arrayA[indexA + 2].hasChildNodes()
+    ) {
+      arrayA[indexA].appendChild(textX3);
+      arrayA[indexA + 1].appendChild(textX4);
+      arrayA[indexA + 2].appendChild(textX5);
+
+      objectX.countX = 3;
+    }
+    //left//
+    else if (
+      (arrayLeft.includes(indexA) && arrayA[indexA + 1].hasChildNodes()) ||
+      (arrayLeft.includes(indexA) && !arrayA[indexA + 1].hasChildNodes())
+    ) {
+    }
+    //aa//
+    else if (
+      arrayA[indexA + 1].hasChildNodes() &&
+      !arrayLeft.includes(indexA) &&
+      !arrayLeft.includes(indexA - 1) &&
+      !arrayA[indexA - 1].hasChildNodes() &&
+      !arrayA[indexA - 2].hasChildNodes()
     ) {
       arrayA[indexA].appendChild(textX3);
       arrayA[indexA - 1].appendChild(textX4);
       arrayA[indexA - 2].appendChild(textX5);
-      hasX = true;
+
       objectX.countX = 3;
-    } else if (
-      arrayRight.includes(indexA) &&
-      arrayA[indexA - 1].hasChildNodes()
+    }
+    //aa//
+    else if (
+      (arrayA[indexA + 1].hasChildNodes() &&
+        !arrayA[indexA + 2].hasChildNodes()) ||
+      arrayA[indexA + 2].hasChildNodes()
     ) {
-    } else if (
-      arrayLeft.includes(indexA) &&
-      !arrayA[indexA + 1].hasChildNodes() &&
-      !arrayA[indexA + 2].hasChildNodes() &&
-      !arrayRight.includes(indexA) &&
-      !arrayRight.includes(indexA + 1) &&
-      !arrayRight.includes(indexA + 2)
-    ) {
+    }
+
+    //aa//
+    else {
       arrayA[indexA].appendChild(textX3);
       arrayA[indexA + 1].appendChild(textX4);
       arrayA[indexA + 2].appendChild(textX5);
-      hasX = true;
-      objectX.countX = 3;
-    } else if (
-      arrayLeft.includes(indexA) &&
-      arrayA[indexA + 1].hasChildNodes()
-    ) {
-    } else if (
-      (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes()) ||
-      (arrayA[indexA + 1].hasChildNodes() && !arrayLeft.includes(indexA)) ||
-      (arrayRight.includes(indexA) && arrayA[indexA - 1].hasChildNodes()) ||
-      (arrayLeft.includes(indexA) && !arrayA[indexA + 1].hasChildNodes()) ||
-      (arrayLeft.includes(indexA) && arrayA[indexA + 1].hasChildNodes()) ||
-      (arrayRight.includes(indexA + 1) && arrayA[indexA - 1].hasChildNodes()) ||
-      arrayA[indexA + 2].hasChildNodes() ||
-      arrayRight.includes(indexA + 1)
-    ) {
-    } else {
-      arrayA[indexA].appendChild(textX3);
-      arrayA[indexA + 1].appendChild(textX4);
-      arrayA[indexA + 2].appendChild(textX5);
-      hasX = true;
+
       objectX.countX = 3;
     }
 

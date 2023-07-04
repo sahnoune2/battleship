@@ -9,8 +9,6 @@ const board2 = document.querySelector(".board2");
 const title1 = document.querySelector(".title1");
 const title2 = document.querySelector(".title2");
 
-let hasX = false;
-let hasY = false;
 let cX = { clicked1: false };
 let cY = { clicked2: true };
 let arrayRight = [9, 19, 29, 39, 49, 59, 69, 79, 89, 99];
@@ -22,7 +20,6 @@ let oY = { cY: 1 };
 let oB = { cB: 0 };
 let objectX = { countX: 0 };
 let objectY = { countY: 0 };
-let hide = false;
 
 const fragmentA = document.createDocumentFragment();
 const fragmentB = document.createDocumentFragment();
@@ -336,17 +333,7 @@ for (let i = 0; i < arrayA.length; i++) {
   const first = arrayA[i];
   first.addEventListener("click", function () {
     if (oX.cX === 0) {
-      placeX(
-        event,
-        objectX,
-        hasX,
-        arrayA,
-        arrayRight,
-        arrayLeft,
-        player,
-        oX,
-        oY
-      );
+      placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY);
     }
   });
 }
@@ -354,18 +341,7 @@ for (let i = 0; i < arrayB.length; i++) {
   const second = arrayB[i];
   second.addEventListener("click", function () {
     if (oY.cY === 0) {
-      placeY(
-        event,
-        objectY,
-        hasY,
-        arrayB,
-        arrayRight,
-        arrayLeft,
-        player,
-        oX,
-        oY,
-        oB
-      );
+      placeY(event, objectY, arrayB, arrayRight, arrayLeft, player, oX, oY, oB);
     }
   });
 }
