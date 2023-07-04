@@ -52,7 +52,10 @@ body {
 }
 .textY1,
 .textY2,
-.textY {
+.textY,
+.textY3,
+.textY4,
+.textY5 {
   display: flex;
   justify-content: center;
   align-items: center;

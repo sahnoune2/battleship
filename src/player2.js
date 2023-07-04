@@ -66,6 +66,88 @@ function placeY(
       textY2.textContent = "Y";
       textY1.classList.add("textY1");
       textY2.classList.add("textY2");
+    }
+  } else if (objectY.countY === 2 && !event.target.hasChildNodes()) {
+    const textY3 = document.createElement("div");
+    const textY4 = document.createElement("div");
+    const textY5 = document.createElement("div");
+    let indexA = arrayB.indexOf(event.target);
+
+    if (
+      arrayRight.includes(indexA) &&
+      !arrayB[indexA - 1].hasChildNodes() &&
+      !arrayB[indexA - 2].hasChildNodes()
+    ) {
+      arrayB[indexA].appendChild(textY3);
+      arrayB[indexA - 1].appendChild(textY4);
+      arrayB[indexA - 2].appendChild(textY5);
+      hasY = true;
+      objectY.countY = 3;
+    } else if (
+      (arrayB[indexA + 1].hasChildNodes() &&
+        !arrayLeft.includes(indexA) &&
+        !arrayLeft.includes(indexA - 1) &&
+        !arrayLeft.includes(indexA - 2) &&
+        !arrayB[indexA - 1].hasChildNodes() &&
+        !arrayB[indexA - 2].hasChildNodes()) ||
+      (arrayB[indexA + 1].hasChildNodes() &&
+        !arrayLeft.includes(indexA) &&
+        !arrayLeft.includes(indexA - 1) &&
+        arrayLeft.includes(indexA - 2) &&
+        !arrayB[indexA - 1].hasChildNodes() &&
+        !arrayB[indexA - 2].hasChildNodes())
+    ) {
+      arrayB[indexA].appendChild(textY3);
+      arrayB[indexA - 1].appendChild(textY4);
+      arrayB[indexA - 2].appendChild(textY5);
+      hasY = true;
+      objectY.countY = 3;
+    } else if (
+      arrayRight.includes(indexA) &&
+      arrayB[indexA - 1].hasChildNodes()
+    ) {
+    } else if (
+      arrayLeft.includes(indexA) &&
+      !arrayB[indexA + 1].hasChildNodes() &&
+      !arrayB[indexA + 2].hasChildNodes() &&
+      !arrayRight.includes(indexA) &&
+      !arrayRight.includes(indexA + 1) &&
+      !arrayRight.includes(indexA + 2)
+    ) {
+      arrayB[indexA].appendChild(textY3);
+      arrayB[indexA + 1].appendChild(textY4);
+      arrayB[indexA + 2].appendChild(textY5);
+      hasY = true;
+      objectY.countY = 3;
+    } else if (
+      arrayLeft.includes(indexA) &&
+      arrayY[indexA + 1].hasChildNodes()
+    ) {
+    } else if (
+      (arrayRight.includes(indexA) && !arrayB[indexA - 1].hasChildNodes()) ||
+      (arrayB[indexA + 1].hasChildNodes() && !arrayLeft.includes(indexA)) ||
+      (arrayRight.includes(indexA) && arrayB[indexA - 1].hasChildNodes()) ||
+      (arrayLeft.includes(indexA) && !arrayB[indexA + 1].hasChildNodes()) ||
+      (arrayLeft.includes(indexA) && arrayB[indexA + 1].hasChildNodes()) ||
+      (arrayRight.includes(indexA + 1) && arrayB[indexA - 1].hasChildNodes()) ||
+      arrayB[indexA + 2].hasChildNodes() ||
+      arrayRight.includes(indexA + 1)
+    ) {
+    } else {
+      arrayB[indexA].appendChild(textY3);
+      arrayB[indexA + 1].appendChild(textY4);
+      arrayB[indexA + 2].appendChild(textY5);
+      hasY = true;
+      objectY.countY = 3;
+    }
+
+    if (objectY.countY === 3) {
+      textY3.textContent = "Y";
+      textY4.textContent = "Y";
+      textY5.textContent = "Y";
+      textY3.classList.add("textY3");
+      textY4.classList.add("textY4");
+      textY5.classList.add("textY5");
 
       player.textContent = "begin";
       oX.cX = 0;

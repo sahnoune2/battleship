@@ -205,15 +205,27 @@ function HideMarks() {
   const textX = document.querySelector(".textX");
   const textX1 = document.querySelector(".textX1");
   const textX2 = document.querySelector(".textX2");
+  const textX3 = document.querySelector(".textX3");
+  const textX4 = document.querySelector(".textX4");
+  const textX5 = document.querySelector(".textX5");
   const textY = document.querySelector(".textY");
   const textY1 = document.querySelector(".textY1");
   const textY2 = document.querySelector(".textY2");
+  const textY3 = document.querySelector(".textY3");
+  const textY4 = document.querySelector(".textY4");
+  const textY5 = document.querySelector(".textY5");
   textX.style.visibility = "hidden";
   textX1.style.visibility = "hidden";
   textX2.style.visibility = "hidden";
+  textX3.style.visibility = "hidden";
+  textX4.style.visibility = "hidden";
+  textX5.style.visibility = "hidden";
   textY.style.visibility = "hidden";
   textY1.style.visibility = "hidden";
   textY2.style.visibility = "hidden";
+  textY3.style.visibility = "hidden";
+  textY4.style.visibility = "hidden";
+  textY5.style.visibility = "hidden";
 
   button.disabled = true;
 

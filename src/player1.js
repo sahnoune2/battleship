@@ -84,12 +84,18 @@ function placeX(
       hasX = true;
       objectX.countX = 3;
     } else if (
-      arrayA[indexA + 1].hasChildNodes() &&
-      !arrayLeft.includes(indexA) &&
-      !arrayLeft.includes(indexA - 1) &&
-      !arrayLeft.includes(indexA - 2) &&
-      !arrayA[indexA - 1].hasChildNodes() &&
-      !arrayA[indexA - 2].hasChildNodes()
+      (arrayA[indexA + 1].hasChildNodes() &&
+        !arrayLeft.includes(indexA) &&
+        !arrayLeft.includes(indexA - 1) &&
+        !arrayLeft.includes(indexA - 2) &&
+        !arrayA[indexA - 1].hasChildNodes() &&
+        !arrayA[indexA - 2].hasChildNodes()) ||
+      (arrayA[indexA + 1].hasChildNodes() &&
+        !arrayLeft.includes(indexA) &&
+        !arrayLeft.includes(indexA - 1) &&
+        arrayLeft.includes(indexA - 2) &&
+        !arrayA[indexA - 1].hasChildNodes() &&
+        !arrayA[indexA - 2].hasChildNodes())
     ) {
       arrayA[indexA].appendChild(textX3);
       arrayA[indexA - 1].appendChild(textX4);
@@ -103,7 +109,10 @@ function placeX(
     } else if (
       arrayLeft.includes(indexA) &&
       !arrayA[indexA + 1].hasChildNodes() &&
-      !arrayA[indexA + 2].hasChildNodes()
+      !arrayA[indexA + 2].hasChildNodes() &&
+      !arrayRight.includes(indexA) &&
+      !arrayRight.includes(indexA + 1) &&
+      !arrayRight.includes(indexA + 2)
     ) {
       arrayA[indexA].appendChild(textX3);
       arrayA[indexA + 1].appendChild(textX4);
@@ -119,7 +128,10 @@ function placeX(
       (arrayA[indexA + 1].hasChildNodes() && !arrayLeft.includes(indexA)) ||
       (arrayRight.includes(indexA) && arrayA[indexA - 1].hasChildNodes()) ||
       (arrayLeft.includes(indexA) && !arrayA[indexA + 1].hasChildNodes()) ||
-      (arrayLeft.includes(indexA) && arrayA[indexA + 1].hasChildNodes())
+      (arrayLeft.includes(indexA) && arrayA[indexA + 1].hasChildNodes()) ||
+      (arrayRight.includes(indexA + 1) && arrayA[indexA - 1].hasChildNodes()) ||
+      arrayA[indexA + 2].hasChildNodes() ||
+      arrayRight.includes(indexA + 1)
     ) {
     } else {
       arrayA[indexA].appendChild(textX3);
