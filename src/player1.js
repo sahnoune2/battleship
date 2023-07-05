@@ -3,8 +3,8 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
   if (objectX.countX === 0) {
     const textX = document.createElement("div");
     event.target.appendChild(textX);
-    event.target.style.backgroundColor = "yellow";
-    textX.style.backgroundColor = "yellow";
+
+    textX.style.backgroundColor = "red";
     console.log(event.target);
     textX.classList.add("textX");
 
@@ -19,9 +19,6 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
     if (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes()) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA - 1].appendChild(textX2);
-
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA - 1].style.backgroundColor = "yellow";
 
       objectX.countX = 2;
     }
@@ -41,9 +38,6 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA + 1].appendChild(textX2);
 
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA + 1].style.backgroundColor = "yellow";
-
       objectX.countX = 2;
     }
     //left//
@@ -57,9 +51,6 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA - 1].appendChild(textX2);
 
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA - 1].style.backgroundColor = "yellow";
-
       objectX.countX = 2;
     }
     //aa//
@@ -67,13 +58,11 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
       arrayA[indexA].appendChild(textX1);
       arrayA[indexA + 1].appendChild(textX2);
 
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA + 1].style.backgroundColor = "yellow";
       objectX.countX = 2;
     }
     if (objectX.countX === 2) {
-      textX1.style.backgroundColor = "yellow";
-      textX2.style.backgroundColor = "yellow";
+      textX1.style.backgroundColor = "red";
+      textX2.style.backgroundColor = "red";
 
       textX1.classList.add("textX1");
       textX2.classList.add("textX2");
@@ -95,9 +84,6 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
       arrayA[indexA - 1].appendChild(textX4);
       arrayA[indexA - 2].appendChild(textX5);
 
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA - 1].style.backgroundColor = "yellow";
-      arrayA[indexA - 2].style.backgroundColor = "yellow";
       objectX.countX = 3;
     }
     //right//
@@ -118,9 +104,6 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
       arrayA[indexA + 1].appendChild(textX4);
       arrayA[indexA + 2].appendChild(textX5);
 
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA + 1].style.backgroundColor = "yellow";
-      arrayA[indexA + 2].style.backgroundColor = "yellow";
       objectX.countX = 3;
     }
     //left//
@@ -141,9 +124,6 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
       arrayA[indexA - 1].appendChild(textX4);
       arrayA[indexA - 2].appendChild(textX5);
 
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA - 1].style.backgroundColor = "yellow";
-      arrayA[indexA - 2].style.backgroundColor = "yellow";
       objectX.countX = 3;
     }
     //aa//
@@ -160,13 +140,14 @@ function placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY) {
       arrayA[indexA + 1].appendChild(textX4);
       arrayA[indexA + 2].appendChild(textX5);
 
-      arrayA[indexA].style.backgroundColor = "yellow";
-      arrayA[indexA + 1].style.backgroundColor = "yellow";
-      arrayA[indexA + 2].style.backgroundColor = "yellow";
       objectX.countX = 3;
     }
 
     if (objectX.countX === 3) {
+      textX3.style.backgroundColor = "red";
+      textX4.style.backgroundColor = "red";
+      textX5.style.backgroundColor = "red";
+
       textX3.classList.add("textX3");
       textX4.classList.add("textX4");
       textX5.classList.add("textX5");

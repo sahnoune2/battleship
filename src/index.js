@@ -41,60 +41,20 @@ for (let i = 0; i < 100; i++) {
 }
 board2.appendChild(fragmentB);
 
-// for (let i = 0; i < arrayA.length; i++) {
-//   const first = arrayA[i];
-//   first.addEventListener("mouseover", (event) => {
-//     event.target.style.backgroundColor = "yellow";
-//   });
-// }
-
-// for (let i = 0; i < arrayA.length; i++) {
-//   const first = arrayA[i];
-//   first.addEventListener("mouseout", (event) => {
-//     event.target.style.backgroundColor = "";
-//   });
-// }
-
-// for (let i = 0; i < arrayB.length; i++) {
-//   const second = arrayB[i];
-//   second.addEventListener("mouseover", (event) => {
-//     event.target.style.backgroundColor = "blue";
-//   });
-// }
-
-// for (let i = 0; i < arrayB.length; i++) {
-//   const second = arrayB[i];
-//   second.addEventListener("mouseout", (event) => {
-//     event.target.style.backgroundColor = "";
-//   });
-// }
-
 function HideMarks() {
-  player.textContent = "player1's turn";
-  const textX = document.querySelector(".textX");
-  const textX1 = document.querySelector(".textX1");
-  const textX2 = document.querySelector(".textX2");
-  const textX3 = document.querySelector(".textX3");
-  const textX4 = document.querySelector(".textX4");
-  const textX5 = document.querySelector(".textX5");
-  const textY = document.querySelector(".textY");
-  const textY1 = document.querySelector(".textY1");
-  const textY2 = document.querySelector(".textY2");
-  const textY3 = document.querySelector(".textY3");
-  const textY4 = document.querySelector(".textY4");
-  const textY5 = document.querySelector(".textY5");
-  textX.style.visibility = "hidden";
-  textX1.style.visibility = "hidden";
-  textX2.style.visibility = "hidden";
-  textX3.style.visibility = "hidden";
-  textX4.style.visibility = "hidden";
-  textX5.style.visibility = "hidden";
-  textY.style.visibility = "hidden";
-  textY1.style.visibility = "hidden";
-  textY2.style.visibility = "hidden";
-  textY3.style.visibility = "hidden";
-  textY4.style.visibility = "hidden";
-  textY5.style.visibility = "hidden";
+  const elementsY = document.querySelectorAll(
+    '[style="background-color: yellow;"]'
+  );
+  const elementsB = document.querySelectorAll(
+    '[style="background-color: blue;"]'
+  );
+
+  for (let i = 0; i < elementsB.length; i++) {
+    elementsY[i].style.backgroundColor = "white";
+    elementsB[i].style.backgroundColor = "white";
+  }
+  console.log(elementsY);
+  console.log(elementsB);
 
   button.disabled = true;
   title1.style.backgroundColor = "yellow";
@@ -117,11 +77,7 @@ function HideMarks() {
 function placeO1(event, cX) {
   let index = arrayA.indexOf(event.target);
   if (cX.clicked1 === false) {
-    if (
-      event.target.textContent !== "X" &&
-      event.target.textContent !== null &&
-      event.target.textContent !== "O"
-    ) {
+    if (!event.target.hasChildNodes() && event.target.textContent !== null) {
       event.target.textContent = "O";
       player.textContent = "player2's turn";
       title2.style.backgroundColor = "blue";
@@ -129,12 +85,11 @@ function placeO1(event, cX) {
       cX.clicked1 = true;
       cY.clicked2 = false;
     } else if (
-      event.target.textContent === "X" &&
-      event.target.textContent !== "O"
+      event.target.hasChildNodes() &&
+      event.target.textContent !== "O" &&
+      event.target.style.backgroundColor !== "red"
     ) {
-      const child = arrayA[index].firstElementChild;
-      console.log(child.className);
-      child.style.visibility = "visible";
+      event.target.style.backgroundColor = "red";
       player.textContent = "player2's turn";
       title2.style.backgroundColor = "blue";
       title1.style.backgroundColor = "";
@@ -450,6 +405,246 @@ for (let i = 0; i < arrayA.length; i++) {
 }
 for (let i = 0; i < arrayB.length; i++) {
   const second = arrayB[i];
+  second.addEventListener("mouseover", function () {
+    if (oY.cY === 0) {
+      //first :X//
+      if (objectY.countY === 0) {
+        event.target.style.backgroundColor = "yellow";
+      }
+      //second :XX//
+      else if (objectY.countY === 1 && !event.target.hasChildNodes()) {
+        let indexA = arrayB.indexOf(event.target);
+        //right//
+        if (
+          arrayRight.includes(indexA) &&
+          !arrayB[indexA - 1].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA - 1].style.backgroundColor = "yellow";
+        }
+
+        //right//
+        else if (
+          arrayRight.includes(indexA) &&
+          arrayB[indexA - 1].hasChildNodes()
+        ) {
+        }
+
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          !arrayB[indexA + 1].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA + 1].style.backgroundColor = "yellow";
+        }
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          arrayB[indexA + 1].hasChildNodes()
+        ) {
+        }
+        //aa//
+        else if (
+          arrayB[indexA + 1].hasChildNodes() &&
+          !arrayLeft.includes(indexA)
+        ) {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA - 1].style.backgroundColor = "yellow";
+        }
+        //aa//
+        else {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA + 1].style.backgroundColor = "yellow";
+        }
+      }
+      // third : XXX//
+      else if (objectY.countY === 2 && !event.target.hasChildNodes()) {
+        let indexA = arrayB.indexOf(event.target);
+        //right//
+        if (
+          arrayRight.includes(indexA) &&
+          !arrayB[indexA - 1].hasChildNodes() &&
+          !arrayB[indexA - 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA - 1].style.backgroundColor = "yellow";
+          arrayB[indexA - 2].style.backgroundColor = "yellow";
+        }
+        //right//
+        else if (
+          (arrayRight.includes(indexA) && arrayB[indexA - 1].hasChildNodes()) ||
+          (arrayRight.includes(indexA) &&
+            !arrayB[indexA - 1].hasChildNodes()) ||
+          arrayRight.includes(indexA + 1)
+        ) {
+        }
+
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          !arrayB[indexA + 1].hasChildNodes() &&
+          !arrayB[indexA + 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA + 1].style.backgroundColor = "yellow";
+          arrayB[indexA + 2].style.backgroundColor = "yellow";
+        }
+        //left//
+        else if (
+          (arrayLeft.includes(indexA) && arrayB[indexA + 1].hasChildNodes()) ||
+          (arrayLeft.includes(indexA) && !arrayB[indexA + 1].hasChildNodes())
+        ) {
+        }
+        //aa//
+        else if (
+          arrayB[indexA + 1].hasChildNodes() &&
+          !arrayLeft.includes(indexA) &&
+          !arrayLeft.includes(indexA - 1) &&
+          !arrayB[indexA - 1].hasChildNodes() &&
+          !arrayB[indexA - 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA - 1].style.backgroundColor = "yellow";
+          arrayB[indexA - 2].style.backgroundColor = "yellow";
+        }
+        //aa//
+        else if (
+          (arrayB[indexA + 1].hasChildNodes() &&
+            !arrayB[indexA + 2].hasChildNodes()) ||
+          arrayB[indexA + 2].hasChildNodes()
+        ) {
+        }
+
+        //aa//
+        else {
+          arrayB[indexA].style.backgroundColor = "yellow";
+          arrayB[indexA + 1].style.backgroundColor = "yellow";
+          arrayB[indexA + 2].style.backgroundColor = "yellow";
+        }
+      }
+    }
+  });
+  second.addEventListener("mouseout", function () {
+    if (oY.cY === 0) {
+      //first :X//
+      if (objectY.countY === 0) {
+        event.target.style.backgroundColor = "";
+      }
+      //second :XX//
+      else if (objectY.countY === 1 && !event.target.hasChildNodes()) {
+        let indexA = arrayB.indexOf(event.target);
+        //right//
+        if (
+          arrayRight.includes(indexA) &&
+          !arrayB[indexA - 1].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA - 1].style.backgroundColor = "";
+        }
+
+        //right//
+        else if (
+          arrayRight.includes(indexA) &&
+          arrayB[indexA - 1].hasChildNodes()
+        ) {
+        }
+
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          !arrayB[indexA + 1].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA + 1].style.backgroundColor = "";
+        }
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          arrayB[indexA + 1].hasChildNodes()
+        ) {
+        }
+        //aa//
+        else if (
+          arrayB[indexA + 1].hasChildNodes() &&
+          !arrayLeft.includes(indexA)
+        ) {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA - 1].style.backgroundColor = "";
+        }
+        //aa//
+        else {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA + 1].style.backgroundColor = "";
+        }
+      }
+      // third : XXX//
+      else if (objectY.countY === 2 && !event.target.hasChildNodes()) {
+        let indexA = arrayB.indexOf(event.target);
+        //right//
+        if (
+          arrayRight.includes(indexA) &&
+          !arrayB[indexA - 1].hasChildNodes() &&
+          !arrayB[indexA - 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA - 1].style.backgroundColor = "";
+          arrayB[indexA - 2].style.backgroundColor = "";
+        }
+        //right//
+        else if (
+          (arrayRight.includes(indexA) && arrayB[indexA - 1].hasChildNodes()) ||
+          (arrayRight.includes(indexA) &&
+            !arrayB[indexA - 1].hasChildNodes()) ||
+          arrayRight.includes(indexA + 1)
+        ) {
+        }
+
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          !arrayB[indexA + 1].hasChildNodes() &&
+          !arrayB[indexA + 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA + 1].style.backgroundColor = "";
+          arrayB[indexA + 2].style.backgroundColor = "";
+        }
+        //left//
+        else if (
+          (arrayLeft.includes(indexA) && arrayB[indexA + 1].hasChildNodes()) ||
+          (arrayLeft.includes(indexA) && !arrayB[indexA + 1].hasChildNodes())
+        ) {
+        }
+        //aa//
+        else if (
+          arrayB[indexA + 1].hasChildNodes() &&
+          !arrayLeft.includes(indexA) &&
+          !arrayLeft.includes(indexA - 1) &&
+          !arrayB[indexA - 1].hasChildNodes() &&
+          !arrayB[indexA - 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA - 1].style.backgroundColor = "";
+          arrayB[indexA - 2].style.backgroundColor = "";
+        }
+        //aa//
+        else if (
+          (arrayB[indexA + 1].hasChildNodes() &&
+            !arrayB[indexA + 2].hasChildNodes()) ||
+          arrayB[indexA + 2].hasChildNodes()
+        ) {
+        }
+
+        //aa//
+        else {
+          arrayB[indexA].style.backgroundColor = "";
+          arrayB[indexA + 1].style.backgroundColor = "";
+          arrayB[indexA + 2].style.backgroundColor = "";
+        }
+      }
+    }
+  });
   second.addEventListener("click", function () {
     if (oY.cY === 0) {
       placeY(event, objectY, arrayB, arrayRight, arrayLeft, player, oX, oY, oB);
