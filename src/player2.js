@@ -10,246 +10,138 @@ function placeY(
   oB,
   second
 ) {
+  //cursor moving coloring function//
+  function mouse(color) {
+    if (oY.cY === 0) {
+      //first :X//
+      if (objectY.countY === 0) {
+        second.style.backgroundColor = color;
+      }
+      //second :XX//
+      else if (objectY.countY === 1 && !second.hasChildNodes()) {
+        let indexA = arrayB.indexOf(second);
+        //right//
+        if (
+          arrayRight.includes(indexA) &&
+          !arrayB[indexA - 1].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA - 1].style.backgroundColor = color;
+        }
+
+        //right//
+        else if (
+          arrayRight.includes(indexA) &&
+          arrayB[indexA - 1].hasChildNodes()
+        ) {
+        }
+
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          !arrayB[indexA + 1].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA + 1].style.backgroundColor = color;
+        }
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          arrayB[indexA + 1].hasChildNodes()
+        ) {
+        }
+        //aa//
+        else if (
+          arrayB[indexA + 1].hasChildNodes() &&
+          !arrayLeft.includes(indexA)
+        ) {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA - 1].style.backgroundColor = color;
+        }
+        //aa//
+        else {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA + 1].style.backgroundColor = color;
+        }
+      }
+      // third : XXX//
+      else if (objectY.countY === 2 && !second.hasChildNodes()) {
+        let indexA = arrayB.indexOf(second);
+        //right//
+        if (
+          arrayRight.includes(indexA) &&
+          !arrayB[indexA - 1].hasChildNodes() &&
+          !arrayB[indexA - 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA - 1].style.backgroundColor = color;
+          arrayB[indexA - 2].style.backgroundColor = color;
+        }
+        //right//
+        else if (
+          (arrayRight.includes(indexA) && arrayB[indexA - 1].hasChildNodes()) ||
+          (arrayRight.includes(indexA) &&
+            !arrayB[indexA - 1].hasChildNodes()) ||
+          arrayRight.includes(indexA + 1)
+        ) {
+        }
+
+        //left//
+        else if (
+          arrayLeft.includes(indexA) &&
+          !arrayB[indexA + 1].hasChildNodes() &&
+          !arrayB[indexA + 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA + 1].style.backgroundColor = color;
+          arrayB[indexA + 2].style.backgroundColor = color;
+        }
+        //left//
+        else if (
+          (arrayLeft.includes(indexA) && arrayB[indexA + 1].hasChildNodes()) ||
+          (arrayLeft.includes(indexA) && !arrayB[indexA + 1].hasChildNodes())
+        ) {
+        }
+        //aa//
+        else if (
+          arrayB[indexA + 1].hasChildNodes() &&
+          !arrayLeft.includes(indexA) &&
+          !arrayLeft.includes(indexA - 1) &&
+          !arrayB[indexA - 1].hasChildNodes() &&
+          !arrayB[indexA - 2].hasChildNodes()
+        ) {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA - 1].style.backgroundColor = color;
+          arrayB[indexA - 2].style.backgroundColor = color;
+        }
+        //aa//
+        else if (
+          (arrayB[indexA + 1].hasChildNodes() &&
+            !arrayB[indexA + 2].hasChildNodes()) ||
+          arrayB[indexA + 2].hasChildNodes()
+        ) {
+        }
+
+        //aa//
+        else {
+          arrayB[indexA].style.backgroundColor = color;
+          arrayB[indexA + 1].style.backgroundColor = color;
+          arrayB[indexA + 2].style.backgroundColor = color;
+        }
+      }
+    }
+  }
+
+  //moving on cubes coloring//
   second.addEventListener("mouseover", function () {
-    if (oY.cY === 0) {
-      //first :X//
-      if (objectY.countY === 0) {
-        second.style.backgroundColor = "yellow";
-      }
-      //second :XX//
-      else if (objectY.countY === 1 && !second.hasChildNodes()) {
-        let indexA = arrayB.indexOf(second);
-        //right//
-        if (
-          arrayRight.includes(indexA) &&
-          !arrayB[indexA - 1].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA - 1].style.backgroundColor = "yellow";
-        }
-
-        //right//
-        else if (
-          arrayRight.includes(indexA) &&
-          arrayB[indexA - 1].hasChildNodes()
-        ) {
-        }
-
-        //left//
-        else if (
-          arrayLeft.includes(indexA) &&
-          !arrayB[indexA + 1].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA + 1].style.backgroundColor = "yellow";
-        }
-        //left//
-        else if (
-          arrayLeft.includes(indexA) &&
-          arrayB[indexA + 1].hasChildNodes()
-        ) {
-        }
-        //aa//
-        else if (
-          arrayB[indexA + 1].hasChildNodes() &&
-          !arrayLeft.includes(indexA)
-        ) {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA - 1].style.backgroundColor = "yellow";
-        }
-        //aa//
-        else {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA + 1].style.backgroundColor = "yellow";
-        }
-      }
-      // third : XXX//
-      else if (objectY.countY === 2 && !second.hasChildNodes()) {
-        let indexA = arrayB.indexOf(second);
-        //right//
-        if (
-          arrayRight.includes(indexA) &&
-          !arrayB[indexA - 1].hasChildNodes() &&
-          !arrayB[indexA - 2].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA - 1].style.backgroundColor = "yellow";
-          arrayB[indexA - 2].style.backgroundColor = "yellow";
-        }
-        //right//
-        else if (
-          (arrayRight.includes(indexA) && arrayB[indexA - 1].hasChildNodes()) ||
-          (arrayRight.includes(indexA) &&
-            !arrayB[indexA - 1].hasChildNodes()) ||
-          arrayRight.includes(indexA + 1)
-        ) {
-        }
-
-        //left//
-        else if (
-          arrayLeft.includes(indexA) &&
-          !arrayB[indexA + 1].hasChildNodes() &&
-          !arrayB[indexA + 2].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA + 1].style.backgroundColor = "yellow";
-          arrayB[indexA + 2].style.backgroundColor = "yellow";
-        }
-        //left//
-        else if (
-          (arrayLeft.includes(indexA) && arrayB[indexA + 1].hasChildNodes()) ||
-          (arrayLeft.includes(indexA) && !arrayB[indexA + 1].hasChildNodes())
-        ) {
-        }
-        //aa//
-        else if (
-          arrayB[indexA + 1].hasChildNodes() &&
-          !arrayLeft.includes(indexA) &&
-          !arrayLeft.includes(indexA - 1) &&
-          !arrayB[indexA - 1].hasChildNodes() &&
-          !arrayB[indexA - 2].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA - 1].style.backgroundColor = "yellow";
-          arrayB[indexA - 2].style.backgroundColor = "yellow";
-        }
-        //aa//
-        else if (
-          (arrayB[indexA + 1].hasChildNodes() &&
-            !arrayB[indexA + 2].hasChildNodes()) ||
-          arrayB[indexA + 2].hasChildNodes()
-        ) {
-        }
-
-        //aa//
-        else {
-          arrayB[indexA].style.backgroundColor = "yellow";
-          arrayB[indexA + 1].style.backgroundColor = "yellow";
-          arrayB[indexA + 2].style.backgroundColor = "yellow";
-        }
-      }
-    }
+    mouse("yellow");
   });
+  //moving out of cubes coloring//
   second.addEventListener("mouseout", function () {
-    if (oY.cY === 0) {
-      //first :X//
-      if (objectY.countY === 0) {
-        second.style.backgroundColor = "";
-      }
-      //second :XX//
-      else if (objectY.countY === 1 && !second.hasChildNodes()) {
-        let indexA = arrayB.indexOf(second);
-        //right//
-        if (
-          arrayRight.includes(indexA) &&
-          !arrayB[indexA - 1].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA - 1].style.backgroundColor = "";
-        }
-
-        //right//
-        else if (
-          arrayRight.includes(indexA) &&
-          arrayB[indexA - 1].hasChildNodes()
-        ) {
-        }
-
-        //left//
-        else if (
-          arrayLeft.includes(indexA) &&
-          !arrayB[indexA + 1].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA + 1].style.backgroundColor = "";
-        }
-        //left//
-        else if (
-          arrayLeft.includes(indexA) &&
-          arrayB[indexA + 1].hasChildNodes()
-        ) {
-        }
-        //aa//
-        else if (
-          arrayB[indexA + 1].hasChildNodes() &&
-          !arrayLeft.includes(indexA)
-        ) {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA - 1].style.backgroundColor = "";
-        }
-        //aa//
-        else {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA + 1].style.backgroundColor = "";
-        }
-      }
-      // third : XXX//
-      else if (objectY.countY === 2 && !second.hasChildNodes()) {
-        let indexA = arrayB.indexOf(second);
-        //right//
-        if (
-          arrayRight.includes(indexA) &&
-          !arrayB[indexA - 1].hasChildNodes() &&
-          !arrayB[indexA - 2].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA - 1].style.backgroundColor = "";
-          arrayB[indexA - 2].style.backgroundColor = "";
-        }
-        //right//
-        else if (
-          (arrayRight.includes(indexA) && arrayB[indexA - 1].hasChildNodes()) ||
-          (arrayRight.includes(indexA) &&
-            !arrayB[indexA - 1].hasChildNodes()) ||
-          arrayRight.includes(indexA + 1)
-        ) {
-        }
-
-        //left//
-        else if (
-          arrayLeft.includes(indexA) &&
-          !arrayB[indexA + 1].hasChildNodes() &&
-          !arrayB[indexA + 2].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA + 1].style.backgroundColor = "";
-          arrayB[indexA + 2].style.backgroundColor = "";
-        }
-        //left//
-        else if (
-          (arrayLeft.includes(indexA) && arrayB[indexA + 1].hasChildNodes()) ||
-          (arrayLeft.includes(indexA) && !arrayB[indexA + 1].hasChildNodes())
-        ) {
-        }
-        //aa//
-        else if (
-          arrayB[indexA + 1].hasChildNodes() &&
-          !arrayLeft.includes(indexA) &&
-          !arrayLeft.includes(indexA - 1) &&
-          !arrayB[indexA - 1].hasChildNodes() &&
-          !arrayB[indexA - 2].hasChildNodes()
-        ) {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA - 1].style.backgroundColor = "";
-          arrayB[indexA - 2].style.backgroundColor = "";
-        }
-        //aa//
-        else if (
-          (arrayB[indexA + 1].hasChildNodes() &&
-            !arrayB[indexA + 2].hasChildNodes()) ||
-          arrayB[indexA + 2].hasChildNodes()
-        ) {
-        }
-
-        //aa//
-        else {
-          arrayB[indexA].style.backgroundColor = "";
-          arrayB[indexA + 1].style.backgroundColor = "";
-          arrayB[indexA + 2].style.backgroundColor = "";
-        }
-      }
-    }
+    mouse("");
   });
+
+  //placing ships//
   second.addEventListener("click", function () {
     if (oY.cY === 0) {
       //first :X//
