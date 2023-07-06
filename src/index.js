@@ -45,16 +45,11 @@ function HideMarks() {
   const elementsY = document.querySelectorAll(
     '[style="background-color: yellow;"]'
   );
-  const elementsB = document.querySelectorAll(
-    '[style="background-color: blue;"]'
-  );
 
-  for (let i = 0; i < elementsB.length; i++) {
+  for (let i = 0; i < elementsY.length; i++) {
     elementsY[i].style.backgroundColor = "white";
-    elementsB[i].style.backgroundColor = "white";
   }
   console.log(elementsY);
-  console.log(elementsB);
 
   button.disabled = true;
   title1.style.backgroundColor = "yellow";
@@ -110,11 +105,7 @@ function placeO1(event, cX) {
 function placeO2(event, cY) {
   let index = arrayB.indexOf(event.target);
   if (cY.clicked2 === false) {
-    if (
-      event.target.textContent !== "Y" &&
-      event.target.textContent !== null &&
-      event.target.textContent !== "O"
-    ) {
+    if (!event.target.hasChildNodes() && event.target.textContent !== null) {
       event.target.textContent = "O";
       player.textContent = "player1's turn";
       title1.style.backgroundColor = "yellow";
@@ -123,12 +114,12 @@ function placeO2(event, cY) {
       cY.clicked2 = true;
       cX.clicked1 = false;
     } else if (
-      event.target.textContent === "Y" &&
-      event.target.textContent !== "O"
+      event.target.hasChildNodes() &&
+      event.target.textContent !== "O" &&
+      event.target.style.backgroundColor !== "blue"
     ) {
-      const child = arrayB[index].firstElementChild;
-      console.log(child.className);
-      child.style.visibility = "visible";
+      event.target.style.backgroundColor = "blue";
+
       player.textContent = "player1's turn";
       title1.style.backgroundColor = "yellow";
       title2.style.backgroundColor = "";

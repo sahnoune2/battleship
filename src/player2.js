@@ -13,7 +13,7 @@ function placeY(
   if (objectY.countY === 0) {
     const textY = document.createElement("div");
     event.target.appendChild(textY);
-    event.target.style.backgroundColor = "blue";
+
     textY.style.backgroundColor = "red";
     console.log(event.target);
     textY.classList.add("textY");
@@ -26,12 +26,9 @@ function placeY(
     const textY2 = document.createElement("div");
     let indexA = arrayB.indexOf(event.target);
     //right//
-    if (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes()) {
-      arrayA[indexA].appendChild(textX1);
+    if (arrayRight.includes(indexA) && !arrayB[indexA - 1].hasChildNodes()) {
+      arrayB[indexA].appendChild(textX1);
       arrayB[indexA - 1].appendChild(textY2);
-
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA - 1].style.backgroundColor = "blue";
 
       objectY.countY = 2;
     }
@@ -51,9 +48,6 @@ function placeY(
       arrayB[indexA].appendChild(textY1);
       arrayB[indexA + 1].appendChild(textY2);
 
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA + 1].style.backgroundColor = "blue";
-
       objectY.countY = 2;
     }
     //left//
@@ -67,9 +61,6 @@ function placeY(
       arrayB[indexA].appendChild(textY1);
       arrayB[indexA - 1].appendChild(textY2);
 
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA - 1].style.backgroundColor = "blue";
-
       objectY.countY = 2;
     }
     //aa//
@@ -77,8 +68,6 @@ function placeY(
       arrayB[indexA].appendChild(textY1);
       arrayB[indexA + 1].appendChild(textY2);
 
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA + 1].style.backgroundColor = "blue";
       objectY.countY = 2;
     }
     if (objectY.countY === 2) {
@@ -105,9 +94,6 @@ function placeY(
       arrayB[indexA - 1].appendChild(textY4);
       arrayB[indexA - 2].appendChild(textY5);
 
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA - 1].style.backgroundColor = "blue";
-      arrayB[indexA - 2].style.backgroundColor = "blue";
       objectY.countY = 3;
     }
     //right//
@@ -128,9 +114,6 @@ function placeY(
       arrayB[indexA + 1].appendChild(textY4);
       arrayB[indexA + 2].appendChild(textY5);
 
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA + 1].style.backgroundColor = "blue";
-      arrayB[indexA + 2].style.backgroundColor = "blue";
       objectY.countY = 3;
     }
     //left//
@@ -151,9 +134,6 @@ function placeY(
       arrayB[indexA - 1].appendChild(textY4);
       arrayB[indexA - 2].appendChild(textY5);
 
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA - 1].style.backgroundColor = "blue";
-      arrayB[indexA - 2].style.backgroundColor = "blue";
       objectY.countY = 3;
     }
     //aa//
@@ -170,9 +150,6 @@ function placeY(
       arrayB[indexA + 1].appendChild(textY4);
       arrayB[indexA + 2].appendChild(textY5);
 
-      arrayB[indexA].style.backgroundColor = "blue";
-      arrayB[indexA + 1].style.backgroundColor = "blue";
-      arrayB[indexA + 2].style.backgroundColor = "blue";
       objectY.countY = 3;
     }
 
