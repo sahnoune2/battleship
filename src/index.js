@@ -79,25 +79,38 @@ build(arrayB, fragmentB, board2);
 //player 1 places his ships//
 for (let i = 0; i < arrayA.length; i++) {
   const first = arrayA[i];
-  placeX(event, objectX, arrayA, arrayRight, arrayLeft, player, oX, oY, first);
-}
-
-//player 2 places his ships//
-for (let i = 0; i < arrayB.length; i++) {
-  const second = arrayB[i];
-  placeY(
+  placeX(
     event,
-    objectY,
-    arrayB,
+    objectX,
+    arrayA,
     arrayRight,
     arrayLeft,
     player,
     oX,
     oY,
-    oB,
-    second
+    first,
+    objectY,
+    arrayB,
+    oB
   );
 }
+
+//player 2 places his ships//
+// for (let i = 0; i < arrayB.length; i++) {
+//   const second = arrayB[i];
+//   placeY(
+//     event,
+//     objectY,
+//     arrayB,
+//     arrayRight,
+//     arrayLeft,
+//     player,
+//     oX,
+//     oY,
+//     oB,
+//     second
+//   );
+// }
 
 //begin the game by hiding the ships and start guessing//
 button.addEventListener("click", function () {

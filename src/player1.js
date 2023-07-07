@@ -1,3 +1,5 @@
+import { placeY } from "./player2";
+
 function placeX(
   event,
   objectX,
@@ -7,7 +9,10 @@ function placeX(
   player,
   oX,
   oY,
-  first
+  first,
+  objectY,
+  arrayB,
+  oB
 ) {
   //cursor moving coloring function//
   function mouse(color) {
@@ -304,6 +309,17 @@ function placeX(
           player.textContent = "player2's turn";
           oX.cX = 1;
           oY.cY = 0;
+          placeY(
+            event,
+            objectY,
+            arrayB,
+            arrayRight,
+            arrayLeft,
+            player,
+            oX,
+            oY,
+            oB
+          );
         }
       }
     }
