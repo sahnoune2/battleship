@@ -84,9 +84,7 @@ function placeX(
         //right//
         else if (
           (arrayRight.includes(indexA) && arrayA[indexA - 1].hasChildNodes()) ||
-          (arrayRight.includes(indexA) &&
-            !arrayA[indexA - 1].hasChildNodes()) ||
-          arrayRight.includes(indexA + 1)
+          (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes())
         ) {
         }
 
@@ -118,11 +116,21 @@ function placeX(
           arrayA[indexA - 1].style.backgroundColor = color;
           arrayA[indexA - 2].style.backgroundColor = color;
         }
+        ////////////////try///////////////
+        else if (
+          !arrayA[indexA + 1].hasChildNodes() &&
+          !arrayA[indexA - 1].hasChildNodes()
+        ) {
+          arrayA[indexA].style.backgroundColor = color;
+          arrayA[indexA + 1].style.backgroundColor = color;
+          arrayA[indexA - 1].style.backgroundColor = color;
+        }
         //aa//
         else if (
           (arrayA[indexA + 1].hasChildNodes() &&
             !arrayA[indexA + 2].hasChildNodes()) ||
-          arrayA[indexA + 2].hasChildNodes()
+          arrayA[indexA + 2].hasChildNodes() ||
+          arrayLeft.includes(indexA + 2)
         ) {
         }
 
@@ -242,9 +250,7 @@ function placeX(
         //right//
         else if (
           (arrayRight.includes(indexA) && arrayA[indexA - 1].hasChildNodes()) ||
-          (arrayRight.includes(indexA) &&
-            !arrayA[indexA - 1].hasChildNodes()) ||
-          arrayRight.includes(indexA + 1)
+          (arrayRight.includes(indexA) && !arrayA[indexA - 1].hasChildNodes())
         ) {
         }
 
@@ -280,11 +286,23 @@ function placeX(
 
           objectX.countX = 3;
         }
+        ////////////try/////////////
+        else if (
+          !arrayA[indexA + 1].hasChildNodes() &&
+          !arrayA[indexA - 1].hasChildNodes()
+        ) {
+          arrayA[indexA + 1].appendChild(textX3);
+          arrayA[indexA].appendChild(textX4);
+          arrayA[indexA - 1].appendChild(textX5);
+
+          objectX.countX = 3;
+        }
         //aa//
         else if (
           (arrayA[indexA + 1].hasChildNodes() &&
             !arrayA[indexA + 2].hasChildNodes()) ||
-          arrayA[indexA + 2].hasChildNodes()
+          arrayA[indexA + 2].hasChildNodes() ||
+          arrayLeft.includes(indexA + 2)
         ) {
         }
 

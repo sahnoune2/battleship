@@ -1,34 +1,35 @@
-function placeO2(
-  event,
-  cY,
-  arrayB,
-  second,
-  player,
-  title2,
-  objectY,
-  title1,
-  cX
-) {
-  //function to assign the colors //
+function place02(event, cY, arrayB, player, title2, objectY, title1, cX) {
   function assign(text1, text2, text3, text4, text5, text6) {
-    second.style.backgroundColor = text1;
+    randomElement.style.backgroundColor = text1;
     player.textContent = text2;
     title2.style.backgroundColor = text3;
     title1.style.backgroundColor = text4;
     cX.clicked1 = text5;
     cY.clicked2 = text6;
   }
-  let index = arrayB.indexOf(second);
+  let randomElement;
+  do {
+    const randomIndex = Math.floor(Math.random() * arrayB.length);
+    randomElement = arrayB[randomIndex];
+  } while (
+    randomElement.style.backgroundColor === "green" ||
+    randomElement.style.backgroundColor === "blue"
+  );
+
+  let index = arrayB.indexOf(randomElement);
   if (cY.clicked2 === false) {
     //when u dont guess the right spot//
-    if (!second.hasChildNodes() && second.style.backgroundColor !== "green") {
+    if (
+      !randomElement.hasChildNodes() &&
+      randomElement.style.backgroundColor !== "green"
+    ) {
       assign("green", "player1's turn", "yellow", "", false, true);
     }
     //when u  guess the right spot//
     else if (
-      second.hasChildNodes() &&
-      second.style.backgroundColor !== "green" &&
-      second.style.backgroundColor !== "blue"
+      randomElement.hasChildNodes() &&
+      randomElement.style.backgroundColor !== "green" &&
+      randomElement.style.backgroundColor !== "blue"
     ) {
       assign("blue", "player1's turn", "yellow", "", false, true);
       objectY.countY += 1;
@@ -45,4 +46,4 @@ function placeO2(
   }
 }
 
-export { placeO2 };
+export { place02 };

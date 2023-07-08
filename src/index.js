@@ -1,7 +1,7 @@
 import { placeO1 } from "./place01";
-import { placeO2 } from "./place02";
+
 import { placeX } from "./player1";
-import { placeY } from "./player2";
+
 //select elements from the dom//
 const button = document.querySelector(".button");
 const player = document.querySelector(".player");
@@ -56,16 +56,22 @@ function HideMarks() {
   for (let i = 0; i < arrayA.length; i++) {
     const first = arrayA[i];
     first.addEventListener("click", function (event) {
-      placeO1(event, cX, arrayA, first, player, title2, objectX, title1, cY);
+      placeO1(
+        event,
+        cX,
+        arrayA,
+        first,
+        player,
+        title2,
+        objectX,
+        title1,
+        cY,
+        arrayB,
+        objectY
+      );
     });
   }
   ////player1 guessing on board2////
-  for (let i = 0; i < arrayB.length; i++) {
-    const second = arrayB[i];
-    second.addEventListener("click", function (event) {
-      placeO2(event, cY, arrayB, second, player, title2, objectY, title1, cX);
-    });
-  }
 }
 
 ////////// game begins//////////
@@ -94,23 +100,6 @@ for (let i = 0; i < arrayA.length; i++) {
     oB
   );
 }
-
-//player 2 places his ships//
-// for (let i = 0; i < arrayB.length; i++) {
-//   const second = arrayB[i];
-//   placeY(
-//     event,
-//     objectY,
-//     arrayB,
-//     arrayRight,
-//     arrayLeft,
-//     player,
-//     oX,
-//     oY,
-//     oB,
-//     second
-//   );
-// }
 
 //begin the game by hiding the ships and start guessing//
 button.addEventListener("click", function () {

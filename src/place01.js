@@ -1,3 +1,5 @@
+import { place02 } from "./place02";
+
 function placeO1(
   event,
   cX,
@@ -7,7 +9,9 @@ function placeO1(
   title2,
   objectX,
   title1,
-  cY
+  cY,
+  arrayB,
+  objectY
 ) {
   //function to assign the colors //
   function assign(text1, text2, text3, text4, text5, text6) {
@@ -22,6 +26,8 @@ function placeO1(
     //when u dont guess the right spot//
     if (!first.hasChildNodes() && first.style.backgroundColor !== "green") {
       assign("green", "player2's turn", "blue", "", true, false);
+      console.log("hey");
+      place02(event, cY, arrayB, player, title2, objectY, title1, cX);
     }
     //when u  guess the right spot//
     else if (
@@ -30,6 +36,9 @@ function placeO1(
       first.style.backgroundColor !== "red"
     ) {
       assign("red", "player2's turn", "blue", "", true, false);
+      console.log("bye");
+
+      place02(event, cY, arrayB, player, title2, objectY, title1, cX);
       objectX.countX += 1;
     }
     //declaring the winner//

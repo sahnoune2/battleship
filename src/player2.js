@@ -19,29 +19,35 @@ function placeY(
       console.log("hey");
       const textY = document.createElement("div");
       randomElement.appendChild(textY);
-      randomElement.style.backgroundColor = "red";
-      textY.style.backgroundColor = "red";
+      randomElement.style.backgroundColor = "yellow";
+      textY.style.backgroundColor = "yellow";
       console.log(randomElement);
       textY.classList.add("textY");
 
       objectY.countY = 1;
     }
+
+    let randomElement1;
+    do {
+      const randomIndex1 = Math.floor(Math.random() * arrayB.length);
+      randomElement1 = arrayB[randomIndex1];
+    } while (randomElement1.hasChildNodes());
+
     //randomElement :XX//
     if (objectY.countY === 1) {
       console.log("fucj");
-      const randomIndex = Math.floor(Math.random() * arrayB.length);
-      const randomElement = arrayB[randomIndex];
-      console.log(randomElement);
+
+      console.log(randomElement1);
 
       const textY1 = document.createElement("div");
       const textY2 = document.createElement("div");
-      let indexA = arrayB.indexOf(randomElement);
+      let indexA = arrayB.indexOf(randomElement1);
       //right//
       if (arrayRight.includes(indexA) && !arrayB[indexA - 1].hasChildNodes()) {
-        arrayB[indexA].appendChild(textX1);
+        arrayB[indexA].appendChild(textY1);
         arrayB[indexA - 1].appendChild(textY2);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA - 1].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA - 1].style.backgroundColor = "yellow";
         objectY.countY = 2;
       }
 
@@ -59,8 +65,8 @@ function placeY(
       ) {
         arrayB[indexA].appendChild(textY1);
         arrayB[indexA + 1].appendChild(textY2);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA + 1].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA + 1].style.backgroundColor = "yellow";
 
         objectY.countY = 2;
       }
@@ -77,8 +83,8 @@ function placeY(
       ) {
         arrayB[indexA].appendChild(textY1);
         arrayB[indexA - 1].appendChild(textY2);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA - 1].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA - 1].style.backgroundColor = "yellow";
 
         objectY.countY = 2;
       }
@@ -86,29 +92,38 @@ function placeY(
       else {
         arrayB[indexA].appendChild(textY1);
         arrayB[indexA + 1].appendChild(textY2);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA + 1].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA + 1].style.backgroundColor = "yellow";
         objectY.countY = 2;
       }
       if (objectY.countY === 2) {
-        textY1.style.backgroundColor = "red";
-        textY2.style.backgroundColor = "red";
+        textY1.style.backgroundColor = "yellow";
+        textY2.style.backgroundColor = "yellow";
 
         textY1.classList.add("textY1");
         textY2.classList.add("textY2");
       }
     }
     // third : XXX//
+    let randomElement2;
+    let randomIndex2;
+    do {
+      randomIndex2 = Math.floor(Math.random() * arrayB.length);
+      randomElement2 = arrayB[randomIndex2];
+    } while (
+      randomElement2.hasChildNodes() ||
+      arrayB[randomIndex2 - 2].hasChildNodes() ||
+      arrayB[randomIndex2 - 1].hasChildNodes()
+    );
     if (objectY.countY === 2) {
       console.log("fuuuuck");
-      const randomIndex = Math.floor(Math.random() * arrayB.length);
-      const randomElement = arrayB[randomIndex];
-      console.log(randomElement);
+
+      console.log(randomElement2);
 
       const textY3 = document.createElement("div");
       const textY4 = document.createElement("div");
       const textY5 = document.createElement("div");
-      let indexA = arrayB.indexOf(randomElement);
+      let indexA = arrayB.indexOf(randomElement2);
       //right//
       if (
         arrayRight.includes(indexA) &&
@@ -118,17 +133,16 @@ function placeY(
         arrayB[indexA].appendChild(textY3);
         arrayB[indexA - 1].appendChild(textY4);
         arrayB[indexA - 2].appendChild(textY5);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA - 1].style.backgroundColor = "red";
-        arrayB[indexA - 2].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA - 1].style.backgroundColor = "yellow";
+        arrayB[indexA - 2].style.backgroundColor = "yellow";
 
         objectY.countY = 3;
       }
       //right//
       else if (
         (arrayRight.includes(indexA) && arrayB[indexA - 1].hasChildNodes()) ||
-        (arrayRight.includes(indexA) && !arrayB[indexA - 1].hasChildNodes()) ||
-        arrayRight.includes(indexA + 1)
+        (arrayRight.includes(indexA) && !arrayB[indexA - 1].hasChildNodes())
       ) {
       }
 
@@ -141,9 +155,9 @@ function placeY(
         arrayB[indexA].appendChild(textY3);
         arrayB[indexA + 1].appendChild(textY4);
         arrayB[indexA + 2].appendChild(textY5);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA + 1].style.backgroundColor = "red";
-        arrayB[indexA + 2].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA + 1].style.backgroundColor = "yellow";
+        arrayB[indexA + 2].style.backgroundColor = "yellow";
 
         objectY.countY = 3;
       }
@@ -164,17 +178,33 @@ function placeY(
         arrayB[indexA].appendChild(textY3);
         arrayB[indexA - 1].appendChild(textY4);
         arrayB[indexA - 2].appendChild(textY5);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA - 1].style.backgroundColor = "red";
-        arrayB[indexA - 2].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA - 1].style.backgroundColor = "yellow";
+        arrayB[indexA - 2].style.backgroundColor = "yellow";
 
         objectY.countY = 3;
       }
-      //aa//
+
+      //////////////try////////
+      else if (
+        !arrayB[indexA + 1].hasChildNodes() &&
+        !arrayB[indexA - 1].hasChildNodes()
+      ) {
+        arrayB[indexA + 1].appendChild(textY3);
+        arrayB[indexA].appendChild(textY4);
+        arrayB[indexA - 1].appendChild(textY5);
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA - 1].style.backgroundColor = "yellow";
+        arrayB[indexA + 1].style.backgroundColor = "yellow";
+
+        objectY.countY = 3;
+      }
+      //aa/////////////////
       else if (
         (arrayB[indexA + 1].hasChildNodes() &&
           !arrayB[indexA + 2].hasChildNodes()) ||
-        arrayB[indexA + 2].hasChildNodes()
+        arrayB[indexA + 2].hasChildNodes() ||
+        arrayLeft.includes(indexA + 2)
       ) {
       }
 
@@ -183,17 +213,17 @@ function placeY(
         arrayB[indexA].appendChild(textY3);
         arrayB[indexA + 1].appendChild(textY4);
         arrayB[indexA + 2].appendChild(textY5);
-        arrayB[indexA].style.backgroundColor = "red";
-        arrayB[indexA + 1].style.backgroundColor = "red";
-        arrayB[indexA + 2].style.backgroundColor = "red";
+        arrayB[indexA].style.backgroundColor = "yellow";
+        arrayB[indexA + 1].style.backgroundColor = "yellow";
+        arrayB[indexA + 2].style.backgroundColor = "yellow";
 
         objectY.countY = 3;
       }
 
       if (objectY.countY === 3) {
-        textY3.style.backgroundColor = "red";
-        textY4.style.backgroundColor = "red";
-        textY5.style.backgroundColor = "red";
+        textY3.style.backgroundColor = "yellow";
+        textY4.style.backgroundColor = "yellow";
+        textY5.style.backgroundColor = "yellow";
 
         textY3.classList.add("textY3");
         textY4.classList.add("textY4");
